@@ -1,49 +1,53 @@
-﻿using System.Data;
-using Projeto2.Models;
-namespace Projeto2.Repositorio;
+﻿using Projeto2.Models;
 
-public class UsuarioRepositorio
+namespace Projeto2.Repositorio
 {
-    private readonly string _connectionString;
-    public void AdicionarUsuario(Usuario usuario)
+    public class UsuarioRepositorio
     {
-        using (var db = new Conexao(_connectionString))
-        {
-            var cmd = db.MySqlCommand();
-            cmd.CommandText = "INSERT INTO Usuario (Nome, Email, Senha) VALUES (@Nome,@Email,@Senha)";
-            cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
-            cmd.Parameters.AddWithValue("@Email", usuario.Email);
-            cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
-            cmd.ExecuteNonQuery();
+        public readonly string _connectionString;
 
+        public UsuarioRepositorio(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
-    }
-    public Usuario ObterUsuario(string email)
-    {
-        using (var db = new Conexao(_connectionString))
+
+        public void AdicionarUsuario(Usuario usuario)
         {
-            var cmd = db.MySqlCommand();
-            cmd.CommandText = "SELECT * FROM Usuario WHERE Email = @Email";
-            cmd.Parameters.AddWithValue("@Email", email);
-            cmd.ExecuteNonQuery();
-
-            using (var reader = cmd.ExecuteReader())
+            using (var db = new Conexao(_connectionString))
             {
-                if (reader.Read())
-                {
-                    return new Usuario
-                    {
-                        Id = reader.GetInt32("Id"),
-                        Nome = reader.GetString("Nome"),
-                        Email = reader.GetString("Email"),
-                        Senha = reader.GetString("Senha"),
-
-                    };
-
-                }
-
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "INSERT INTO Usuario (Nome, Email, Senha) VALUES (@Nome, @Email, @Senha)";
+                cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
+                cmd.ExecuteNonQuery();
             }
-            return null;
+        }
+
+        public Usuario ObterUsuario(string email)
+        {
+            using (var db = new Conexao(_connectionString))
+            {
+                var cmd = db.MySqlCommand();
+                cmd.CommandText = "SELECT * FROM Usuario WHERE Email == @Email";
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.ExecuteNonQuery();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Usuario
+                        {
+                            Id = reader.GetInt32("Id"),
+                            Nome = reader.GetString("Nome"),
+                            Email = reader.GetString("Email"),
+                            Senha = reader.GetString("Senha"),
+                        };
+                    }
+                }
+                return null;
+            }
         }
     }
 }
