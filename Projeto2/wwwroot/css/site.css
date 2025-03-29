@@ -1,3 +1,8 @@
+* {
+    
+}
+
+
 html {
   font-size: 14px;
 }
@@ -13,10 +18,74 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    background-color: #8bc0e1;
+}
+header nav {
+    background:#8bc0e1;  
+}
+    header nav div div ul li a {
+        color: green;
+    }
+.display-4, #tagline {
+    font-family: AMORIA;
+    color: #382c74;
+}
+.text-center {
+    background: #258cfb;
+    border-radius:5%;
+    
 }
 
 body {
   margin-bottom: 60px;
+}
+
+#tagline {
+    
+    font-size:25px;
+}
+
+#Cadastro {
+    background-color: #382c74;
+    margin-left: 25%;
+    width: 50%;
+    height: auto;
+    align-content: center;
+    border-radius: 5%;
+    color: #8bc0e1;
+    
+    
+}
+    #Cadastro div label {
+        font-size: 20px;
+    }
+    #Cadastro div, #Cadastro button {
+        margin-top: 3%;
+        margin-left: 35%;
+    }
+    
+    #Cadastro input {
+        width:50%;
+        border-radius: 10px;
+    }
+    #Cadastro button {
+        background-color: #4a92cd;
+        color:aliceblue;
+        width: 25%;
+        height: 40px;
+        margin-left: 38%;
+        margin-bottom:2%;
+        border-radius: 10px;
+    }
+h2 {    
+    text-align: center;
+    color: rgb(20,150,180);
+    font-weight:bolder;
+}
+
+footer div{
+    color: black;
+    text-align:center;
 }

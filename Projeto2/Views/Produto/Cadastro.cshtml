@@ -4,18 +4,19 @@
 }
 <h2>Registra Produto</h2>
 
-<form asp-action="Cadastro" method="post">
+<form asp-action="Cadastro" id="Cadastro" method="post">
 	<div>
-		<label>Nome:</label>
+		<label>Nome:</label> <br />
 		<input asp-for="Nome" required />
 	</div>
 	<div>
-		<label>Descrição:</label>
+		<label>Descrição:</label> <br />
 		<input asp-for="Descricao"  required />
 	</div>
 	<div>
-		<label>Preço:</label>
+		<label>Preço:</label> <br />
 		<input asp-for="Preco"  required />
-	</div>
-	<button type="submit">Cadastra Produto</button>
+	</div> 
+	<br />
+	<button type="submit">Cadastrar Produto</button>
 </form>

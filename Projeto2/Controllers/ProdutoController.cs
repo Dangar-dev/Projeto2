@@ -24,10 +24,9 @@ namespace Projeto2.Controllers
             if (ModelState.IsValid)
             {
                 _produtoRepositorio.AdicionarProduto(produto);
-                return RedirectToAction("Login");
             }
 
-            return View(produto);
+            return View();
         }
     }
 }
