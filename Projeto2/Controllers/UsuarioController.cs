@@ -5,7 +5,8 @@ using Projeto2.Repositorio;
 namespace Projeto2.Controllers
 {
     public class UsuarioController : Controller
-    {
+    {   
+        //Construtor
         private readonly UsuarioRepositorio _usuarioRepositorio;
 
         public UsuarioController(UsuarioRepositorio usuarioRepositorio)
